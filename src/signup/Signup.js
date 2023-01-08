@@ -5,6 +5,24 @@ function Signup() {
   const [data, setData] = useState({});
   const [dataArr, setDataArr] = useState([]);
 
+  const verify = () => {
+    if(!dataArr.fullName || !dataArr.email || !dataArr.password || !dataArr.cnfPassword) {
+      // error
+      return
+    }
+
+    if(!dataArr.email.contains('@') || !dataArr.email.contains('.') || !dataArr.email.length >= 6 ) {
+      // error
+      return
+    }
+
+    // Password Validation
+    if(dataArr.password !== dataArr.cnfPassword) {
+      // error
+      return
+    }
+  }
+
   return (
     <div>
       <h3> Sign Up </h3>
@@ -37,7 +55,7 @@ function Signup() {
             setDataArr([...dataArr, data]);
           }}
         />
-        <button onClick={() => {}}> Sign Up </button>
+        <button onClick={verify}> Sign Up </button>
       </div>
     </div>
   );
