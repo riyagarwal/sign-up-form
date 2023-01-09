@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "Signup.css";
+import "./Signup.css";
 
 function Signup() {
   const [data, setData] = useState({});
@@ -7,7 +7,6 @@ function Signup() {
   const [error, setError] = useState(false);
 
   const verify = () => {
-
     // Empty fields
     if (
       !dataArr.fullName ||
@@ -19,8 +18,8 @@ function Signup() {
         "Error: All the fields are mandatory";
       setError(true);
       return;
-    } 
-    
+    }
+
     // Email verification
     else if (
       !dataArr.email.contains("@") ||
@@ -46,10 +45,8 @@ function Signup() {
         "Password and Confirm Password do not match";
       setError(true);
       return;
-    } 
-    
-    else {
-      document.getElementById("error").textContent = "Successfully signed up";
+    } else {
+      document.getElementById("success").textContent = "Successfully signed up";
     }
   };
 
@@ -60,28 +57,30 @@ function Signup() {
         <input
           placeholder="Full Name"
           onChange={(event) => {
-            setData({ fullName: event.target.value });
+            setData({ 'fullName': event.target.value });
             setDataArr([...dataArr, data]);
           }}
         />
         <input
           placeholder="Email"
           onChange={(event) => {
-            setData({ email: event.target.value });
+            setData({ 'email': event.target.value });
             setDataArr([...dataArr, data]);
           }}
         />
         <input
+          type="password"
           placeholder="Password"
           onChange={(event) => {
-            setData({ password: event.target.value });
+            setData({ 'password': event.target.value });
             setDataArr([...dataArr, data]);
           }}
         />
         <input
+          type="password"
           placeholder="Confirm Password"
           onChange={(event) => {
-            setData({ cnfPassword: event.target.value });
+            setData({ 'cnfPassword': event.target.value });
             setDataArr([...dataArr, data]);
           }}
         />
@@ -89,6 +88,8 @@ function Signup() {
       </div>
 
       <p id="error"> </p>
+      <p id="success"> </p>
+
     </div>
   );
 }
